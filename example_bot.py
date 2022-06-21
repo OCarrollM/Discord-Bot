@@ -1,22 +1,30 @@
-# Example bot for testing
+import discord
 
-import discord                          ## Registers the library
-        
-intents = discord.Intents.default()
-intents.message_content = True
-
-client = discord.Client(intents=intents)
+# Client (Variable for bot work)
+client = discord.Client()
 
 @client.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')
+    # Code
+
+    bot_channel = client.get_channel(988388873363161128)
+
+    await bot_channel.send('My name is deez')
 
 @client.event
-async def on_message():
-    if message.author == client.user:
-        return
+async def on_disconnect():
+        bot_channel = client.get_channel(988388873363161128)
+        await bot_channel.send('Disconnected')
+@client.event
+async def on_message(message):
+    
+    if message.content == 'pumps':
+            bot_channel = client.get_channel(988388873363161128)
+            await bot_channel.send('pumps?!?!')
 
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+    if message.content == 'morb':
+        bot_channel = client.get_channel(988388873363161128)
+        await bot_channel.send('It\'s morbin time')
 
-client.run('your token here')
+# Run client on server
+client.run('OTg4Mzg5MTYxMDg0MDA2NDQw.GwfPEf.PGvVp_fKxDNTU1449HoEVUYczliT5hmYZ0gV2k')
